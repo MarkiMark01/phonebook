@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
+import { AddContacts } from './components/AddContacts';
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -74,17 +75,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Phonebook</h1>
-      <form onSubmit={handleFormSubmit}>
-        <div>
-          <h2>Name</h2>
-          <input type="text" value={name} onChange={handleNameChange} />
-          {/* <input type="text" value={name} onChange={handleNameChange} ref={searchRef} /> */}
-          <h2>Number</h2>
-          <input type="text" value={number} onChange={handleNumberChange} />
-        </div>
-        <button type="submit">Add contact</button>
-      </form>
+      <AddContacts
+        handleNameChange={handleNameChange}
+        handleNumberChange={handleNumberChange}
+        handleFormSubmit={handleFormSubmit}
+        name={name}
+        number={number}
+      />
       <div>
         <h2>Filter</h2>
         <input type="text" value={filter} onChange={handleFilterChange} />
