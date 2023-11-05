@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { AddContacts } from './components/AddContacts';
+import { Filter } from './components/Filter';
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -82,10 +83,7 @@ function App() {
         name={name}
         number={number}
       />
-      <div>
-        <h2>Filter</h2>
-        <input type="text" value={filter} onChange={handleFilterChange} />
-      </div>
+      <Filter filter={filter} handleFilterChange={handleFilterChange} />
       <h2>Contacts</h2>
       <ul>
         {filteredContacts.map((contact, id) => (
