@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { AddContacts } from './components/AddContacts';
 import { Filter } from './components/Filter';
+import { ContactList } from './components/ContactList';
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -84,17 +85,7 @@ function App() {
         number={number}
       />
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
-      <h2>Contacts</h2>
-      <ul>
-        {filteredContacts.map((contact, id) => (
-          <li key={id}>
-            {contact.name}: {contact.number}
-            <button type="button" onClick={() => deleteContact(id)}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      <ContactList filteredContacts={filteredContacts} deleteContact={deleteContact} />
     </div>
   );
 }
