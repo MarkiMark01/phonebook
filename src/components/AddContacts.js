@@ -6,15 +6,15 @@ export const AddContacts = ({
     number }) => {
 
     return (
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit} >
             <h1>Phonebook</h1>
-            <div>
-                <h2>Name</h2>
-                <input type="text" value={name} onChange={handleNameChange} />
-                <h2>Number</h2>
-                <input type="text" value={number} onChange={handleNumberChange} />
+            <div className="contacts">
+
+                <input type="text" value={name} onChange={handleNameChange} placeholder="Name" />
+
+                <input type="text" value={number} onChange={handleNumberChange} placeholder="Number" />
             </div>
-            <button type="submit">Add contact</button>
+            <button type="submit" className="btn-add">Add contact</button>
         </form>
     );
 }

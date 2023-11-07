@@ -3,6 +3,7 @@ import './App.css';
 import { AddContacts } from './components/AddContacts';
 import { Filter } from './components/Filter';
 import { ContactList } from './components/ContactList';
+import './components/styles.css';
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -77,15 +78,17 @@ function App() {
 
   return (
     <div className="App">
-      <AddContacts
-        handleNameChange={handleNameChange}
-        handleNumberChange={handleNumberChange}
-        handleFormSubmit={handleFormSubmit}
-        name={name}
-        number={number}
-      />
-      <Filter filter={filter} handleFilterChange={handleFilterChange} />
-      <ContactList filteredContacts={filteredContacts} deleteContact={deleteContact} />
+      <div className='main-container'>
+        <AddContacts
+          handleNameChange={handleNameChange}
+          handleNumberChange={handleNumberChange}
+          handleFormSubmit={handleFormSubmit}
+          name={name}
+          number={number}
+        />
+        <Filter filter={filter} handleFilterChange={handleFilterChange} />
+        <ContactList filteredContacts={filteredContacts} deleteContact={deleteContact} />
+      </div>
     </div>
   );
 }
