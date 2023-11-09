@@ -11,7 +11,7 @@ function App() {
   const [number, setNumber] = useState('');
   const [filter, setFilter] = useState('');
 
-  // const searchRef = useRef();
+  const searchRef = useRef(null);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -35,22 +35,21 @@ function App() {
       return;
     }
 
-    if (contacts.some(contact => contact.name === name)) {
+    if (contacts.some((contact) => contact.name === name)) {
       alert(`Contact with name ${name} already exists!`);
       return;
     }
 
     const newContact = { name, number };
-    setContacts(prevContacts => [...prevContacts, newContact]);
+    setContacts((prevContacts) => [...prevContacts, newContact]);
     setName('');
     setNumber('');
-
 
     localStorage.setItem('contacts', JSON.stringify([...contacts, newContact]));
   };
 
   function getFilteredContacts() {
-    return contacts.filter(contact =>
+    return contacts.filter((contact) =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   }
@@ -58,12 +57,12 @@ function App() {
   const filteredContacts = getFilteredContacts();
 
   const deleteContact = (index) => {
-    setContacts(prevContacts =>
+    setContacts((prevContacts) =>
       prevContacts.filter((_, i) => i !== index)
     );
     const updatedContacts = contacts.filter((_, i) => i !== index);
     localStorage.setItem('contacts', JSON.stringify(updatedContacts));
-  }
+  };
 
   useEffect(() => {
     const savedContacts = localStorage.getItem('contacts');
@@ -72,13 +71,15 @@ function App() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   searchRef.current.focus();
-  // }, [])
+  useEffect(() => {
+    if (searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, []);
 
   return (
     <div className="App">
-      <div className='main-container'>
+      <div className="main-container">
         <AddContacts
           handleNameChange={handleNameChange}
           handleNumberChange={handleNumberChange}
@@ -94,3 +95,4 @@ function App() {
 }
 
 export default App;
+
